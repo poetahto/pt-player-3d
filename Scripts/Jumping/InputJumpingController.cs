@@ -8,7 +8,10 @@ namespace pt_player_3d.Scripts
         private KeyCode jumpKey = KeyCode.Space;
 
         [SerializeField]
-        private bool holdToJump = true;
+        private bool holdToJump;
+
+        [SerializeField]
+        private bool scrollToJump;
 
         [SerializeField]
         private JumpingSystem jumpingSystem;
@@ -22,7 +25,7 @@ namespace pt_player_3d.Scripts
         {
             jumpingSystem.IsJumpHeld = Input.GetKey(jumpKey);
 
-            if ((holdToJump && Input.GetKey(jumpKey)) || Input.GetKeyDown(jumpKey))
+            if ((holdToJump && Input.GetKey(jumpKey)) || Input.GetKeyDown(jumpKey) || (scrollToJump && Input.GetAxisRaw("Mouse ScrollWheel") != 0))
                 jumpingSystem.ApplyJumpInput();
         }
     }

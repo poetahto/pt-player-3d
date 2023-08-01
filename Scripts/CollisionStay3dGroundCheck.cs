@@ -20,8 +20,12 @@ namespace pt_player_3d.Scripts
 
         private GroundData3d _data3d;
         private bool _isGrounded;
+        private bool _wasGrounded;
         private List<ContactPoint> _frameContacts;
         private List<ContactPoint> _contactBuffer;
+
+        public override bool IsGrounded => _isGrounded;
+        public override bool WasGrounded => _wasGrounded;
 
         public override bool TryGetGround(out GroundData3d groundData3d)
         {
@@ -62,6 +66,11 @@ namespace pt_player_3d.Scripts
         {
             _isGrounded = _frameContacts.Count > 0;
 
+            if (!_isGrounded && _wasGrounded) // we just left
+            {
+                onGroundLeave.Invoke(new OnGroundLeaveEvent{GroundBeingLeft = _data3d});
+            }
+
             // Compute the average normal and point based on all contacts.
             _data3d.Normal = Vector3.zero;
             _data3d.Point = Vector3.zero;
@@ -76,8 +85,14 @@ namespace pt_player_3d.Scripts
             _data3d.Normal /= _frameContacts.Count;
             _data3d.Point /= _frameContacts.Count;
 
+            if (_isGrounded && !_wasGrounded) // we just landed
+            {
+                onGroundLand.Invoke(new OnGroundLandEvent{GroundBeingLandedOn = _data3d});
+            }
+
             // prepare for the next frame's new collision data.
             _frameContacts.Clear();
+            _wasGrounded = _isGrounded;
         }
     }
 }
