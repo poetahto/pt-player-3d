@@ -1,11 +1,8 @@
-# poetools runtime console
-_An easy-to-use and powerful runtime developer console._
+# poetools 3d player
+_A set of tools for creating 3D controlled characters._
 
 ## features
-- Create custom commands with auto-complete and history built in.
-- Includes helpful default commands for common game-related tasks.
+- 
 
 ## roadmap
-- improving this readme with pictures, videos
-- Adding more useful default commands.
-- Adding optional console support to other poetools packages.
+- importing existing player stuff
