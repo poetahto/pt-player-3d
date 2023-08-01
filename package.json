@@ -1,0 +1,10 @@
+{
+  "name": "com.poetools.player-3d",
+  "version": "0.0.1",
+  "displayName": "Poetools Player 3D",
+  "description": "Scripts for designing FPS players.",
+  "author": {
+    "name": "poetahto",
+    "email": "epic.potat@gmail.com"
+  }
+}
