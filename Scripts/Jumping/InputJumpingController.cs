@@ -13,12 +13,17 @@ namespace pt_player_3d.Scripts
         [SerializeField]
         private JumpingSystem jumpingSystem;
 
+        private void OnDisable()
+        {
+            jumpingSystem.IsJumpHeld = false;
+        }
+
         private void Update()
         {
             jumpingSystem.IsJumpHeld = Input.GetKey(jumpKey);
 
             if ((holdToJump && Input.GetKey(jumpKey)) || Input.GetKeyDown(jumpKey))
-                jumpingSystem.TryJump();
+                jumpingSystem.ApplyJumpInput();
         }
     }
 }

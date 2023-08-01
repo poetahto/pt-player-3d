@@ -6,5 +6,6 @@ namespace pt_player_3d.Scripts
     public class JumpingSettings : ScriptableObject
     {
         public float jumpSpeed = 5;
+        public float jumpBufferDuration = 1;
     }
 }
