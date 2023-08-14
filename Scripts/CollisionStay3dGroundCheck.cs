@@ -25,7 +25,6 @@ namespace pt_player_3d.Scripts
         private List<ContactPoint> _contactBuffer;
 
         public override bool IsGrounded => _isGrounded;
-        public override bool WasGrounded => _wasGrounded;
 
         public override bool TryGetGround(out GroundData3d groundData3d)
         {

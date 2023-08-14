@@ -9,7 +9,6 @@ namespace pt_player_3d.Scripts
         public UnityEvent<OnGroundLeaveEvent> onGroundLeave;
 
         public abstract bool IsGrounded { get; }
-        public abstract bool WasGrounded { get; }
         public abstract bool TryGetGround(out GroundData3d groundData3d);
 
         public struct OnGroundLandEvent
