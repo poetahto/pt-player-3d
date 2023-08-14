@@ -7,11 +7,10 @@ _A set of tools for creating 3D controlled characters._
 - Jumping
 
 ## roadmap
+- full movement types (standard, quake, freecam)
 - source crouching
 - normal crouching
 - interaction / interactable system
-- full jumping settings (skew, coyote, buffer, scroll)
-- full movement types (standard, quake, freecam)
 - leaning from pestillence?
 - swimming?
 - ladder climbing?
@@ -22,3 +21,4 @@ _A set of tools for creating 3D controlled characters._
 - camera FOV animation?
 - held-item movement / jumping / rotation procedural animations
 - footstep sound player
+- full jumping settings (skew)
