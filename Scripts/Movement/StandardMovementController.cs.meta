@@ -1,3 +1,14 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: a1205a9cf7654d7bb4c454ebad599287
-timeCreated: 1690881032
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - yawTransform: {instanceID: 0}
+  - body: {instanceID: 0}
+  - settings: {fileID: 11400000, guid: 76faa145b2bf43249bce68de04d6e92e, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

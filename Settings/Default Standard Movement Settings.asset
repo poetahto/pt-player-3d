@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db06ae1a73b453281fe436806da9c50, type: 3}
   m_Name: Default Standard Movement Settings
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 5

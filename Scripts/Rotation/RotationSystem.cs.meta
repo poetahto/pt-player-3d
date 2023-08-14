@@ -1,3 +1,14 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: 3dae0818cc1f4e80976be88c0487be89
-timeCreated: 1690880369
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pitch: {instanceID: 0}
+  - yaw: {instanceID: 0}
+  - settings: {fileID: 11400000, guid: dac269d29a4ceaf498369ac4c59f0c7e, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
