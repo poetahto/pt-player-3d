@@ -6,5 +6,7 @@ namespace pt_player_3d.Scripts.Movement
     public class StandardMovementSettings : ScriptableObject
     {
         public float speed = 3;
+        public float acceleration = 3;
+        public float decceleration = 3;
     }
 }

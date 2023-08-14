@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using poetools.Core.Abstraction;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace pt_player_3d.Scripts
@@ -11,7 +12,7 @@ namespace pt_player_3d.Scripts
 
         [SerializeField]
         [Tooltip("The body that the jump velocity should be applied to.")]
-        private Rigidbody body;
+        private PhysicsComponent body;
 
         [SerializeField]
         [Tooltip("The settings used to control the characteristics of the jump.")]
@@ -80,7 +81,9 @@ namespace pt_player_3d.Scripts
                 eventData.IsCoyote = !groundCheck.IsGrounded;
                 Vector3 normal = Vector3.up;
                 eventData.Velocity = normal * settings.jumpSpeed;
-                body.velocity = eventData.Velocity;
+                Vector3 curVel = body.Velocity;
+                curVel.y = eventData.Velocity.y;
+                body.Velocity = curVel;
                 _isJumpQueued = false;
                 _isCoyoteAvailable = false;
                 _isJumping = true;

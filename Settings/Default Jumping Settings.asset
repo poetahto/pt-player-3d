@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0f0b53104542bd964bba8b6744d4c4, type: 3}
   m_Name: Default Jumping Settings
   m_EditorClassIdentifier: 
-  jumpSpeed: 4
+  jumpSpeed: 3.5
   jumpBufferDuration: 0.2
   coyoteTime: 0.1
