@@ -1,10 +1,11 @@
-﻿using poetools.Core.Abstraction;
+﻿using System;
+using poetools.Core.Abstraction;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace pt_player_3d.Scripts
 {
-    public class JumpingSystem : MonoBehaviour
+    public class JumpingSystem : MonoBehaviour, IJumpingSystem
     {
         [SerializeField]
         [Tooltip("The ground check used to determining if the object can jump, and the jump direction.")]
@@ -24,16 +25,12 @@ namespace pt_player_3d.Scripts
         private bool _isJumpQueued;
         private bool _isCoyoteAvailable;
         private bool _isJumping;
+        private bool _isJumpHeld;
+        private bool _wasJumpHeld;
 
         public bool IsJumpHeld { get; set; }
         public float TimeSpentInAir { get; private set; }
         public float TimeSpentOnGround { get; private set; }
-
-        public void ApplyJumpInput()
-        {
-            _timeSinceJumpAttempt = 0;
-            _isJumpQueued = true;
-        }
 
         private void OnEnable()
         {
@@ -52,8 +49,21 @@ namespace pt_player_3d.Scripts
             _isJumping = false;
         }
 
+        private void Update()
+        {
+            if (IsJumpHeld)
+                _isJumpHeld = true;
+        }
+
         private void FixedUpdate()
         {
+            // Check if player just pressed the jump button.
+            if (!_wasJumpHeld && _isJumpHeld)
+            {
+                _timeSinceJumpAttempt = 0;
+                _isJumpQueued = true;
+            }
+
             // Updating timing information.
             _timeSinceJumpAttempt += Time.deltaTime;
 
@@ -70,6 +80,9 @@ namespace pt_player_3d.Scripts
 
             if (!_isJumping && _isJumpQueued && _timeSinceJumpAttempt <= settings.jumpBufferDuration)
                 TryJump();
+
+            _wasJumpHeld = _isJumpHeld;
+            _isJumpHeld = false;
         }
 
         private void TryJump()

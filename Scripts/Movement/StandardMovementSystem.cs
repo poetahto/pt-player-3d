@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace pt_player_3d.Scripts.Movement
 {
-    public class StandardMovementController : MovementController
+    public class StandardMovementSystem : MonoBehaviour, IMovementSystem
     {
         [SerializeField] private Transform yawTransform;
         public PhysicsComponent body;
@@ -12,12 +12,12 @@ namespace pt_player_3d.Scripts.Movement
 
         private Vector3 _targetVelocity;
 
-        public override void ApplyInput(Vector3 direction)
+        public void ApplyMovementInput(Vector3 direction)
         {
             _targetVelocity = yawTransform.localToWorldMatrix.MultiplyVector(direction * settings.speed);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (_targetVelocity != Vector3.zero)
                 Accelerate();

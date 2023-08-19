@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace pt_player_3d.Scripts
 {
@@ -14,19 +15,26 @@ namespace pt_player_3d.Scripts
         private bool scrollToJump;
 
         [SerializeField]
-        private JumpingSystem jumpingSystem;
+        private GameObject jumpingSystem;
+
+        private IJumpingSystem _system;
+
+        private void Awake()
+        {
+            _system = jumpingSystem.GetComponent<IJumpingSystem>();
+        }
 
         private void OnDisable()
         {
-            jumpingSystem.IsJumpHeld = false;
+            _system.IsJumpHeld = false;
         }
 
         private void Update()
         {
-            jumpingSystem.IsJumpHeld = Input.GetKey(jumpKey);
-
-            if ((holdToJump && Input.GetKey(jumpKey)) || Input.GetKeyDown(jumpKey) || (scrollToJump && Input.GetAxisRaw("Mouse ScrollWheel") != 0))
-                jumpingSystem.ApplyJumpInput();
+            _system.IsJumpHeld =
+                (holdToJump && Input.GetKey(jumpKey)) ||
+                Input.GetKeyDown(jumpKey) ||
+                (scrollToJump && Input.GetAxisRaw("Mouse ScrollWheel") != 0);
         }
     }
 }
