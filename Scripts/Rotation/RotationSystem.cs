@@ -61,16 +61,9 @@ namespace pt_player_3d.Scripts.Rotation
             yaw.localRotation = Quaternion.Euler(0, Yaw, 0);
         }
 
-        public void ApplyRotationInput(Vector2 delta)
+        public void ApplyRotationInput(float pitchDelta, float yawDelta)
         {
-            // Yaw += delta.x;
-            // Pitch += delta.y;
-            // Pitch = Mathf.Clamp(Pitch, settings.minPitch, settings.maxPitch);
-            //
-            // pitch.localRotation = Quaternion.Euler(Pitch, 0, 0);
-            // yaw.localRotation = Quaternion.Euler(0, Yaw, 0);
-            Rotation += new Vector3(delta.x, delta.y, 0);
+            Rotation += new Vector3(yawDelta, pitchDelta, 0);
         }
-
     }
 }

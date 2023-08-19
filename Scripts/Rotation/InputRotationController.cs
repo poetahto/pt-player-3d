@@ -19,8 +19,9 @@ namespace pt_player_3d.Scripts.Rotation
 
         private void Update()
         {
-            Vector2 delta = new Vector2(Input.GetAxisRaw("Mouse X"), -Input.GetAxisRaw("Mouse Y"));
-            _system.ApplyRotationInput(delta * sensitivity);
+            float pitchDelta = -Input.GetAxisRaw("Mouse Y") * sensitivity;
+            float yawDelta = Input.GetAxisRaw("Mouse X") * sensitivity;
+            _system.ApplyRotationInput(pitchDelta, yawDelta);
         }
     }
 }
