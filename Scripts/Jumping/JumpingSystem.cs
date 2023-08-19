@@ -1,5 +1,4 @@
-﻿using System;
-using poetools.Core.Abstraction;
+﻿using poetools.Core.Abstraction;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -19,6 +18,8 @@ namespace pt_player_3d.Scripts
         [Tooltip("The settings used to control the characteristics of the jump.")]
         private JumpingSettings settings;
 
+        public bool autoUpdate = true;
+
         public UnityEvent<JumpEvent> onJump = new UnityEvent<JumpEvent>();
 
         private float _timeSinceJumpAttempt;
@@ -28,7 +29,12 @@ namespace pt_player_3d.Scripts
         private bool _isJumpHeld;
         private bool _wasJumpHeld;
 
-        public bool IsJumpHeld { get; set; }
+        public bool IsJumpHeld
+        {
+            get => _isJumpHeld;
+            set => _isJumpHeld |= value;
+        }
+
         public float TimeSpentInAir { get; private set; }
         public float TimeSpentOnGround { get; private set; }
 
@@ -49,14 +55,17 @@ namespace pt_player_3d.Scripts
             _isJumping = false;
         }
 
-        private void Update()
+        private void FixedUpdate()
+        {
+            if (autoUpdate)
+                Tick(Time.deltaTime);
+        }
+
+        public void Tick(float deltaTime)
         {
             if (IsJumpHeld)
                 _isJumpHeld = true;
-        }
 
-        private void FixedUpdate()
-        {
             // Check if player just pressed the jump button.
             if (!_wasJumpHeld && _isJumpHeld)
             {
@@ -65,15 +74,15 @@ namespace pt_player_3d.Scripts
             }
 
             // Updating timing information.
-            _timeSinceJumpAttempt += Time.deltaTime;
+            _timeSinceJumpAttempt += deltaTime;
 
             if (!groundCheck.IsGrounded)
-                TimeSpentInAir += Time.deltaTime;
+                TimeSpentInAir += deltaTime;
 
-            else TimeSpentOnGround += Time.deltaTime;
+            else TimeSpentOnGround += deltaTime;
 
             // This is to catch the case where you hit head on ceiling and never receive an "on land" callback.
-            if (_isJumping && TimeSpentOnGround > Time.fixedDeltaTime)
+            if (_isJumping && TimeSpentOnGround > deltaTime)
             {
                 HandleLand(default);
             }
