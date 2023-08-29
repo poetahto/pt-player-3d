@@ -46,14 +46,20 @@ namespace pt_player_3d.Scripts.Movement
         private void Accelerate(float deltaTime, Vector3 targetVelocity)
         {
             Vector3 velocity = Vector3.MoveTowards(body.Velocity, targetVelocity, settings.acceleration * deltaTime);
-            velocity.y = body.Velocity.y;
+
+            if (!settings.controlY)
+                velocity.y = body.Velocity.y;
+
             body.Velocity = velocity;
         }
 
         private void Decelerate(float deltaTime, Vector3 targetVelocity)
         {
-            Vector3 velocity = Vector3.Lerp(body.Velocity, targetVelocity, settings.decceleration * deltaTime);
-            velocity.y = body.Velocity.y;
+            Vector3 velocity = Vector3.Lerp(body.Velocity, targetVelocity, settings.deceleration * deltaTime);
+
+            if (!settings.controlY)
+                velocity.y = body.Velocity.y;
+
             body.Velocity = velocity;
         }
     }
